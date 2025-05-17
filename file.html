@@ -108,10 +108,14 @@
     });
 
     noBtn.addEventListener("click", function () {
-      const maxX = window.innerWidth - noBtn.offsetWidth;
-      const maxY = window.innerHeight - noBtn.offsetHeight;
+      const parent = document.getElementById("buttons");
+      const parentRect = parent.getBoundingClientRect();
+
+      const maxX = parent.clientWidth - noBtn.offsetWidth;
+      const maxY = parent.clientHeight - noBtn.offsetHeight;
       const randomX = Math.floor(Math.random() * maxX);
       const randomY = Math.floor(Math.random() * maxY);
+
       noBtn.style.left = randomX + "px";
       noBtn.style.top = randomY + "px";
     });
