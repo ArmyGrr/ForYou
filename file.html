@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Love Question</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #ffe6f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #d6336c;
+      overflow: hidden;
+      position: relative;
+    }
+    .hidden {
+      display: none;
+    }
+    #loginForm {
+      background: #ffd9ec;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #d6336c88;
+      text-align: center;
+      width: 300px;
+    }
+    #loginForm input {
+      width: 90%;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #d6336c;
+      font-size: 16px;
+    }
+    #loginForm button {
+      background: #d6336c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #loginForm button:hover {
+      background: #ff4da6;
+    }
+    #lovePage {
+      background: #ffd9ec;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px #d6336caa;
+      text-align: center;
+      width: 350px;
+      position: relative;
+    }
+    #lovePage img {
+      width: 150px;
+      margin-bottom: 20px;
+      user-select: none;
+    }
+    #question {
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    #buttons {
+      position: relative;
+      height: 80px;
+      width: 350px;
+    }
+    button.answerBtn {
+      background: #ff4da6;
+      border: none;
+      color: white;
+      font-size: 18px;
+      padding: 12px 25px;
+      border-radius: 20px;
+      cursor: pointer;
+      user-select: none;
+      position: absolute;
+      transition: background 0.3s;
+    }
+    button.answerBtn:hover {
+      background: #d6336c;
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Form -->
+  <div id="loginForm">
+    <h2>Login</h2>
+    <input type="text" id="nameInput" placeholder="Name" />
+    <input type="password" id="passwordInput" placeholder="Password" />
+    <br />
+    <button id="loginBtn">Login</button>
+    <p id="loginError" style="color: red; display: none;">Wrong name or password!</p>
+  </div>
+
+  <!-- Love Page -->
+  <div id="lovePage" class="hidden">
+    <img src="https://media.giphy.com/media/UVk5yzljef0kGiayL1/giphy.gif" alt="Cute Sticker" />
+    <div id="question">Do you love me?</div>
+    <div id="buttons">
+      <button id="yesBtn" class="answerBtn" style="left: 40px; top: 10px;">Yes</button>
+      <button id="noBtn" class="answerBtn" style="left: 180px; top: 10px;">No</button>
+    </div>
+  </div>
+
+  <script>
+    const correctName = "sweetheart";
+    const correctPassword = "1234";
+
+    const loginForm = document.getElementById("loginForm");
+    const lovePage = document.getElementById("lovePage");
+    const loginBtn = document.getElementById("loginBtn");
+    const nameInput = document.getElementById("nameInput");
+    const passwordInput = document.getElementById("passwordInput");
+    const loginError = document.getElementById("loginError");
+
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const question = document.getElementById("question");
+
+    loginBtn.addEventListener("click", () => {
+      const name = nameInput.value.trim();
+      const password = passwordInput.value;
+
+      if (name === correctName && password === correctPassword) {
+        loginForm.classList.add("hidden");
+        lovePage.classList.remove("hidden");
+        loginError.style.display = "none";
+      } else {
+        loginError.style.display = "block";
+      }
+    });
+
+    noBtn.addEventListener("click", () => {
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      const maxLeft = vw - btnWidth;
+      const maxTop = vh - btnHeight;
+
+      const randomLeft = Math.floor(Math.random() * maxLeft);
+      const randomTop = Math.floor(Math.random() * maxTop);
+
+      noBtn.style.position = "fixed";
+      noBtn.style.left = randomLeft + "px";
+      noBtn.style.top = randomTop + "px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      question.textContent = "I love you too! 🥰";
+    });
+  </script>
+</body>
+</html>
