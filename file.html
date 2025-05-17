@@ -91,9 +91,6 @@
   </div>
 
   <script>
-    const correctName = "sweetheart";
-    const correctPassword = "1234";
-
     const loginBtn = document.getElementById("loginBtn");
     const nameInput = document.getElementById("nameInput");
     const passwordInput = document.getElementById("passwordInput");
@@ -105,18 +102,9 @@
     const question = document.getElementById("question");
 
     loginBtn.addEventListener("click", function () {
-      const name = nameInput.value.trim().toLowerCase();
-      const password = passwordInput.value;
-
-      if (name === correctName && password === correctPassword) {
-        loginForm.style.display = "none";
-        lovePage.style.display = "block";
-        loginError.style.display = "none";
-      } else {
-        loginForm.style.display = "none";
-        lovePage.style.display = "block";
-        loginError.style.display = "none";
-      }
+      loginForm.style.display = "none";
+      lovePage.style.display = "block";
+      loginError.style.display = "none";
     });
 
     noBtn.addEventListener("click", function () {
